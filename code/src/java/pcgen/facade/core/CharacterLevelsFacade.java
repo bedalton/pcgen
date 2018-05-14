@@ -1,27 +1,26 @@
 /*
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- * 
+ *
  */
 package pcgen.facade.core;
 
-import java.util.EventListener;
-import java.util.EventObject;
-
 import pcgen.cdom.enumeration.SkillCost;
+import pcgen.cdom.facet.event.EventListenerBase;
+import pcgen.cdom.facet.event.EventObjectBase;
 import pcgen.facade.util.ListFacade;
 
 
@@ -82,7 +81,7 @@ public interface CharacterLevelsFacade extends ListFacade<CharacterLevelFacade>
 
 	/**
 	 * Retrieve the maximum number of ranks the character may have in a skill at a level.
-	 * 
+	 *
 	 * @param level The character level to be checked..
 	 * @param cost The cost at which the skill rank would be purchased.
 	 * @param isClassForMaxRanks Has the skill been a class skill at this or an earlier level.
@@ -92,9 +91,9 @@ public interface CharacterLevelsFacade extends ListFacade<CharacterLevelFacade>
 
 	/**
 	 * Check if the skill is class for max ranks purposes as at the specified level.
-	 * A skill is class for max ranks purposes if it has ever been class for the 
-	 * character up to the level.  
-	 * 
+	 * A skill is class for max ranks purposes if it has ever been class for the
+	 * character up to the level.
+	 *
 	 * @param level The level at which to check.
 	 * @param skill The skill to be checked.
 	 * @return True if the skill should be treated as class.
@@ -118,46 +117,46 @@ public interface CharacterLevelsFacade extends ListFacade<CharacterLevelFacade>
 	void removeSkillPointListener(SkillPointListener listener);
 
 	/**
-	 * Identify the appropriate target level for setting the skill to a 
+	 * Identify the appropriate target level for setting the skill to a
 	 * value.
-	 * 
+	 *
 	 * @param skill The skill being changed.
 	 * @param baseLevel The level at which the user has requested the change.
-	 * @param ranks  The new number of ranks. 
+	 * @param ranks  The new number of ranks.
 	 * @return The recommended level.
 	 */
 	public CharacterLevelFacade findNextLevelForSkill(SkillFacade skill,
 		CharacterLevelFacade baseLevel, float ranks);
 
-	public static interface ClassListener extends EventListener
+	public static interface ClassListener extends EventListenerBase
 	{
 
 		void classChanged(CharacterLevelEvent e);
 
 	}
 
-	public static interface HitPointListener extends EventListener
+	public static interface HitPointListener extends EventListenerBase
 	{
 
 		void hitPointsChanged(CharacterLevelEvent e);
 
 	}
 
-	public static interface SkillBonusListener extends EventListener
+	public static interface SkillBonusListener extends EventListenerBase
 	{
 
 		void skillBonusChanged(CharacterLevelEvent e);
 
 	}
 
-	public static interface SkillPointListener extends EventListener
+	public static interface SkillPointListener extends EventListenerBase
 	{
 
 		void skillPointsChanged(CharacterLevelEvent e);
 
 	}
 
-	public static class CharacterLevelEvent extends EventObject
+	public static class CharacterLevelEvent extends EventObjectBase
 	{
 
 		private final int baseLevel;

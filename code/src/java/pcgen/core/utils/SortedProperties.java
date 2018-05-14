@@ -17,8 +17,12 @@ package pcgen.core.utils;
 
 import pcgen.util.Logging;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.*;
+
 
 /**
  * An subclass of Properties whose output is sorted
@@ -108,8 +112,8 @@ public class SortedProperties extends Properties
 	}
 
 	/**
-	 * Convert the supplied string into a property key, escaping any 
-	 * terminator characters within the string.  
+	 * Convert the supplied string into a property key, escaping any
+	 * terminator characters within the string.
 	 * @param rawKey The text to be converted
 	 * @return The valid properties key
 	 */
@@ -120,5 +124,5 @@ public class SortedProperties extends Properties
 		key = key.replaceAll("=", "\\\\=");
 		return key;
 	}
-	
+
 }

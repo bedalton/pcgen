@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
 import pcgen.base.util.HashMapToList;
 import pcgen.cdom.base.AssociatedPrereqObject;
 import pcgen.cdom.base.CDOMList;
@@ -83,9 +84,9 @@ public final class SpellLevel
 	}
 
 	/**
-	 * Retrieve the first level that the pc receives the spell from the specified list. Note that this only returns 
+	 * Retrieve the first level that the pc receives the spell from the specified list. Note that this only returns
 	 * spells that the pc has available.
-	 * 
+	 *
 	 * @param sp The spell to be found.
 	 * @param list The spell list (e.g. a class spell list)
 	 * @param aPC The character who must already have the spell.

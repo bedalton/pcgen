@@ -1,0 +1,337 @@
+pcgen.core.PlayerCharacter.CDOMObjectUtilities - 
+	import org.apache.commons.collections4.ListUtils
+
+pcgen.cdom.base.Constants -> 
+	import java.awt.SystemColor;
+
+pcgen.cdom.content.TabInfo -> 
+	import java.io.File
+	import java.net.URI;
+
+pcgen.cdom.content.UserFunction -> 
+	import java.io.StringReader;
+
+pcgen.cdom.enumeration.AssociationListKey -> 
+	import java.lang.reflect.Field 
+	import java.lang.reflect.Modifier;
+
+pcgen.cdom.enumeration.EqModNameOpt -> 
+	import java.lang.reflect.Field
+	import java.lang.reflect.Modifier;
+
+pcgen.cdom.enumaration.NotePCAttribute -> 
+	import java.util.stream.Stream;
+
+pcgen.cdom.enumaration.NotePCAttribute -> 
+	import java.io.File;
+	import java.lang.reflect.Field;
+	import java.net.URI;
+
+pcgen.cdom.facet.analysis.LevelFacet ->
+	import javax.swing.event.EventListenerList;
+
+pcgen.cdom.facet.analysis.LoadFacet ->
+	import java.util.regex.Pattern;
+
+pcgen.cdom.facet.fact.GoldFacet ->
+	import java.math.RoundingMode;
+
+pcgen.cdom.facet.fact.PortraitThumnailRectFacet ->
+	import java.awt.Rectangle;
+
+pcgen.cdom.facet.FacetLibrary ->
+	import java.lang.reflect.InvocationTargetException;
+
+pcgen.cdom.facet.PlayerCharacterTrackingFacet ->
+	import java.lang.ref.WeakReference;
+
+pcgen.cdom.format.table.DataTable ->
+	import java.util.function.Function;
+
+pcgen.cdom.grouping.GroupingCollection ->
+	import java.util.function.Consumer;
+
+pcgen.cdom.groupind.GroupingInfoFactory ->
+	import java.util.Stack;
+
+pcgen.cdom.grouping.GroupingTokenizer ->
+	import java.util.StringTokenizer;
+
+pcgen.cdom.helper.AllowUtilities ->
+	import java.text.MessageFormat;
+	import org.springframework.web.util.HtmlUtils;
+
+pcgen.cdom.helper.BridgeListener ->
+	import org.apache.commons.lang3.tuple.ImmutablePair;
+
+pcgen.cdom.helper.ClassSkillChoiceActor ->
+	import org.apache.commons.lang3.StringUtils;
+
+pcgen.cdom.helper.CNAbilitySelection ->
+	import java.util.StringTokenizer
+
+pcgen.cdom.meta.CorePerspective ->
+	import java.lang.reflect.Modifier;
+	import java.lang.reflect.Field;
+
+pcgen.cdom.reference.AbstractReferenceManufacturer ->
+	import java.lang.ref.WeakReference;
+
+pcgen.core.analysis.BonusCalc ->
+	java.util.StringTokenizer
+
+pcgen.core.analysis.EqModCost ->
+	java.util.StringTokenizer
+
+pcgen.core.analysis.SkillRankControl ->
+	import org.apache.commons.lang3.StringUtils;
+
+pcgen.core.analysis.StatApplication ->
+	import java.text.DecimalFormat;
+
+pcgen.core.bonus.BonusObj ->
+	import java.io.Serializable;
+
+pcgen.core.chooser.CDOMChoiceManager ->
+	import org.apache.commons.lang3.StringUtils;
+
+pcgen.core.chooser.CDOMChooserFacadeImpl ->
+	import org.apache.commons.lang3.StringUtils;
+
+pcgen.core.chooser.InfoWrapper ->
+	import java.text.DecimalFormat;
+	import java.text.NumberFormat;
+
+pcgen.core.chooser.UserInputManager ->
+	import org.apache.commons.lang3.StringUtils;
+
+pcgen.core.display.CharacterDisplay ->
+	import java.awt.Rectangle;
+
+pcgen.core.display.SkillCostDisplay ->
+	import java.text.NumberFormat;
+	import java.util.regex.Pattern;
+
+pcgen.core.display.VisualDisplay ->
+	import org.apache.commons.collections4.CollectionUtils;
+
+pcgen.core.doomsdaybook.DataElementComparator ->
+	import java.io.Serializable;
+
+pcgen.core.doomsdaybook.DDList ->
+	import gmgen.plugin.dice.Dice;
+
+pcgen.core.doomsdaybool.RuleSet ->
+	import gmgen.plugin.dice.Dice;
+
+pcgen.core.npcgen.ClassDataParser ->
+	import java.io.File;
+	import java.io.IOException;
+	import javax.xml.parsers.ParserConfigurationException;
+	import javax.xml.parsers.SAXParser;
+	import javax.xml.parsers.SAXParserFactory;
+	import org.xml.sax.Attributes;
+	import org.xml.sax.SAXException;
+	import org.xml.sax.helpers.DefaultHandler;
+
+pcgen.core.npcgen.Configuration ->
+	import java.io.File;
+	import java.io.FilenameFilter;
+
+pcgen.core.npcgen.EquipmentTableParser ->
+	import java.io.File;
+	import java.io.IOException;
+	import javax.xml.parsers.ParserConfigurationException;
+	import javax.xml.parsers.SAXParser;
+	import javax.xml.parsers.SAXParserFactory;
+	import org.xml.sax.Attributes;
+	import org.xml.sax.SAXException;
+	import org.xml.sax.helpers.DefaultHandler;
+
+pcgen.core.npcgen.OptionsParser ->
+	import java.io.File;
+	import java.io.IOException;
+	import javax.xml.parsers.ParserConfigurationException;
+	import javax.xml.parsers.SAXParser;
+	import javax.xml.parsers.SAXParserFactory;
+	import org.xml.sax.Attributes;
+	import org.xml.sax.SAXException;
+	import org.xml.sax.helpers.DefaultHandler;
+
+pcgen.core.npcgen.TreasureGenerator ->
+	import java.io.File;
+	import java.io.FilenameFilter;
+
+pcgen.core.npcgen.PCLevelInfoStat ->
+	import java.io.Serializable;
+
+pcgen.core.prereq.PreMult ->
+	import org.apache.commons.lang3.StringUtils;
+
+pcgen.core.term.EvaluatorFactory ->
+	import java.util.regex.Matcher;
+	import java.util.regex.Pattern;
+
+pcgen.core.term.PCEqTypeTermEvaluator ->
+	import java.util.regex.Pattern;
+
+pcgen.core.term.TermEvaluatorBuilderPCVar ->
+	import java.util.regex.Matcher;
+	import java.util.regex.Pattern;
+
+pcgen.core.utils.CoreUtility ->
+	import java.io.File;
+	import java.net.MalformedURLException;
+	import java.net.URL;
+	import java.util.regex.Pattern;
+
+pcgen.util.logging.SortedProperties ->
+	
+import java.io.FileOutputStream;
+	import java.util.Properties;
+	import java.io.BufferedWriter;
+	import java.io.OutputStreamWriter;
+	import java.io.IOException;
+
+pcgen.core.CustomData ->
+	import java.io.BufferedReader;
+	import java.io.BufferedWriter;
+	import java.io.File;
+	import java.io.FileInputStream;
+	import java.io.FileOutputStream;
+	import java.io.IOException;
+	import java.io.InputStreamReader;
+	import java.io.OutputStreamWriter;
+	import java.io.StringWriter;
+
+pcgen.core.Equipment ->
+	import java.io.BufferedWriter;
+	import java.io.File;
+	import java.io.Serializable;
+	import java.util.stream.Collectors;
+	import java.util.stream.IntStream;
+
+pcgen.core.EquipmentModifier ->
+	import java.util.regex.Pattern;
+
+pcgen.core.GearBuySellScheme ->
+	import java.text.NumberFormat;
+
+pcgen.core.Globals ->
+	import javax.swing.JFrame;
+	import java.io.File;
+	import java.io.IOException;
+	import java.net.URI;
+	import java.util.stream.Collectors;
+
+pcgen.core.Movement ->
+	import java.text.DecimalFormat;
+	import java.text.NumberFormat;
+
+pcgen.core.PlayerCharacter ->
+	import java.awt.Rectangle;
+	import java.io.BufferedReader;
+	import java.io.File;
+	import java.io.FileInputStream;
+	import java.io.IOException;
+	import java.io.InputStreamReader;
+
+pcgen.core.RollingMethod ->
+	import org.nfunk.jep.JEP;
+	import org.nfunk.jep.ParseException;
+	import org.nfunk.jep.function.List;
+	import org.nfunk.jep.function.PostfixMathCommand;
+
+pcgen.core.SettingsHandler ->
+	import java.awt.Color;
+	import java.awt.Dimension;
+	import java.awt.Frame;
+	import java.awt.Point;
+	import java.awt.SystemColor;
+	import java.io.File;
+	import java.io.FileInputStream;
+	import java.io.FileNotFoundException;
+	import java.io.FileOutputStream;
+	import java.io.IOException;
+	import java.net.URI;
+	import java.net.URISyntaxException;
+
+pcgen.core.VariableProcessor ->
+	import java.io.BufferedWriter;
+	import java.io.File;
+	import java.io.IOException;
+	import java.io.StringWriter;
+
+pcgen.facade.core.CharacterFacade ->
+	import java.awt.Rectangle;
+	import java.io.BufferedWriter;
+	import java.io.File;
+	import java.util.List;
+	import javax.swing.undo.UndoManager;
+
+pcgen.facade.core.CharacterStubFacade ->
+	import java.io.File;
+
+pcgen.facade.core.EquipmentFacade ->
+	import java.io.File;
+
+pcgen.facade.core.PartyFacade ->
+	import java.io.BufferedWriter;
+	import java.io.File;
+
+Anything ->
+	import gmgen.plugin.dice.Dice;
+	import java.awt.Rectangle;
+	import java.awt.SystemColor;
+	import java.io.BufferedReader;
+	import java.io.BufferedWriter;
+	import java.io.File
+	import java.io.FileInputStream;
+	import java.io.FileOutputStream;
+	import java.io.InputStreamReader;
+	import java.io.IOException;
+	import java.io.OutputStreamWriter;
+	import java.io.Serializable;
+	import java.io.StringReader;
+	import java.lang.ref.WeakReference;
+	import java.lang.reflect.Field;
+	import java.lang.reflect.InvocationTargetException;
+	import java.net.MalformedURLException;
+	import java.net.URI
+	import java.net.URL;
+	import java.math.BigDecimal;
+	import java.math.RoundingMode;
+	import java.text.DecimalFormat;
+	import java.text.MessageFormat;
+	import java.util.IdentityHashMap;
+	import java.util.Optional;
+	import java.util.Properties;
+	import java.util.Stack;
+	import java.util.StringTokenizer;
+	import java.util.function.Function;
+	import java.util.function.Consumer;
+	import java.util.function.Function;
+	import java.util.regex.Pattern;
+	import java.util.regex.Matcher;
+	import javax.swing.event.EventListenerList;
+	import javax.swing.JFrame;
+	import javax.swing.undo.UndoManager;
+	import javax.xml.parsers.ParserConfigurationException;
+	import javax.xml.parsers.SAXParser;
+	import javax.xml.parsers.SAXParserFactory;
+	import org.springframework.web.util.HtmlUtils;
+	import org.apache.commons.collections4.ListUtils
+	import org.apache.commons.lang3.tuple.ImmutablePair;
+	import org.apache.commons.lang3.StringUtils;
+	import org.xml.sax.Attributes;
+	import org.xml.sax.SAXException;
+	import org.xml.sax.helpers.DefaultHandler;
+
+
+
+
+
+
+
+
+

@@ -1,40 +1,38 @@
 /*
  * Copyright (c) Thomas Parker, 2013.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 package pcgen.cdom.facet.event;
 
-import java.util.EventObject;
-
 import pcgen.cdom.enumeration.CharID;
 
 /**
- * 
+ *
  * An SubScopeFacetChangeEvent is an event that indicates when a Facet has
  * changed.
- * 
+ *
  * The object that implements the SubScopeFacetChangeListener interface gets
  * this SubScopeFacetChangeEvent when the event occurs.
- * 
+ *
  * NOTE: This Object is reference-semantic. It carries a reference to the
  * affected CDOMObject. Use of this Event does not provide protection from
  * mutability for that CDOMObject by listeners. SubScopeFacetChangeEvent,
  * however, makes the guarantee that no modifications are made by
  * SubScopeFacetChangeEvent to the CDOMObject.
- * 
+ *
  * @param <S1>
  *            The Type of object of the first scope of the
  *            SubScopeFacetChangeEvent
@@ -44,7 +42,7 @@ import pcgen.cdom.enumeration.CharID;
  * @param <T>
  *            The Type of object changed in the SubScopeFacetChangeEvent
  */
-public class SubScopeFacetChangeEvent<S1, S2, T> extends EventObject
+public class SubScopeFacetChangeEvent<S1, S2, T> extends EventObjectBase
 {
 	/**
 	 * The constant ID used by an SubScopeFacetChangeEvent to indicate that a
@@ -83,7 +81,7 @@ public class SubScopeFacetChangeEvent<S1, S2, T> extends EventObject
 	 * Constructs a new SubScopeFacetChangeEvent for the given CharID. The
 	 * CDOMObject which was added or removed and an indication of the action
 	 * (Addition or Removal) is also provided.
-	 * 
+	 *
 	 * @param id
 	 *            The CharID identifying the PlayerCharacter in which the event
 	 *            took place
@@ -129,7 +127,7 @@ public class SubScopeFacetChangeEvent<S1, S2, T> extends EventObject
 	/**
 	 * Returns the CDOMObject which was added to or removed from the
 	 * PlayerCharacter.
-	 * 
+	 *
 	 * @return The CDOMObject which was added to or removed from the
 	 *         PlayerCharacter
 	 */
@@ -143,7 +141,7 @@ public class SubScopeFacetChangeEvent<S1, S2, T> extends EventObject
 	 * getCDOMObject() was added to or removed from the PlayerCharacter. This
 	 * identifier is either SubScopeFacetChangeEvent.NODE_ADDED or
 	 * SubScopeFacetChangeEvent.NODE_REMOVED
-	 * 
+	 *
 	 * @return A identifier indicating if the CDOMObject was added to or removed
 	 *         from the PlayerCharacter
 	 */
@@ -155,7 +153,7 @@ public class SubScopeFacetChangeEvent<S1, S2, T> extends EventObject
 	/**
 	 * Returns an identifier indicating the PlayerCharacter on which this event
 	 * occurred.
-	 * 
+	 *
 	 * @return A identifier indicating the PlayerCharacter on which this event
 	 *         occurred.
 	 */

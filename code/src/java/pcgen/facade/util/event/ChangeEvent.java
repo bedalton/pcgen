@@ -17,15 +17,15 @@
  */
 package pcgen.facade.util.event;
 
-import java.util.EventObject;
+import pcgen.cdom.facet.event.EventObjectBase;
 
 /**
  * The Class {@code ChangeEvent} indicates the source object, or
  * associated data, was modified in some way.
  *
- * 
+ *
  */
-public class ChangeEvent extends EventObject
+public class ChangeEvent extends EventObjectBase
 {
 
 	/** ID for serialization. */

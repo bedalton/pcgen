@@ -1,39 +1,37 @@
 /*
  * Copyright (c) Thomas Parker, 2013.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 package pcgen.cdom.facet.event;
 
-import java.util.EventObject;
-
 import pcgen.cdom.base.PCGenIdentifier;
 
 /**
- * 
+ *
  * An ScopeFacetChangeEvent is an event that indicates when a Facet has changed.
- * 
+ *
  * The object that implements the ScopeFacetChangeListener interface gets this
  * ScopeFacetChangeEvent when the event occurs.
- * 
+ *
  * NOTE: This Object is reference-semantic. It carries a reference to the
  * affected CDOMObject. Use of this Event does not provide protection from
  * mutability for that CDOMObject by listeners. ScopeFacetChangeEvent, however,
  * makes the guarantee that no modifications are made by ScopeFacetChangeEvent
  * to the CDOMObject.
- * 
+ *
  * @param <IDT>
  *            The type of Identifier (e.g. CharID) used by this
  *            ScopeFacetChangeEvent
@@ -43,7 +41,7 @@ import pcgen.cdom.base.PCGenIdentifier;
  *            The Type object of changed in the ScopeFacetChangeEvent
  */
 public class ScopeFacetChangeEvent<IDT extends PCGenIdentifier, S, T> extends
-		EventObject
+		EventObjectBase
 {
 	/**
 	 * The constant ID used by an ScopeFacetChangeEvent to indicate that a
@@ -81,7 +79,7 @@ public class ScopeFacetChangeEvent<IDT extends PCGenIdentifier, S, T> extends
 	 * Constructs a new ScopeFacetChangeEvent for the given PCGenIdentifier. The
 	 * CDOMObject which was added or removed and an indication of the action
 	 * (Addition or Removal) is also provided.
-	 * 
+	 *
 	 * @param id
 	 *            The PCGenIdentifier identifying the resource in which the
 	 *            event took place
@@ -120,7 +118,7 @@ public class ScopeFacetChangeEvent<IDT extends PCGenIdentifier, S, T> extends
 
 	/**
 	 * Returns the CDOMObject which was added to or removed from the resource.
-	 * 
+	 *
 	 * @return The CDOMObject which was added to or removed from the resource
 	 */
 	public T getCDOMObject()
@@ -133,7 +131,7 @@ public class ScopeFacetChangeEvent<IDT extends PCGenIdentifier, S, T> extends
 	 * getCDOMObject() was added to or removed from the resource. This
 	 * identifier is either ScopeFacetChangeEvent.NODE_ADDED or
 	 * ScopeFacetChangeEvent.NODE_REMOVED
-	 * 
+	 *
 	 * @return A identifier indicating if the CDOMObject was added to or removed
 	 *         from the resource
 	 */
@@ -145,7 +143,7 @@ public class ScopeFacetChangeEvent<IDT extends PCGenIdentifier, S, T> extends
 	/**
 	 * Returns an identifier indicating the resource on which this event
 	 * occurred.
-	 * 
+	 *
 	 * @return A identifier indicating the resource on which this event
 	 *         occurred.
 	 */

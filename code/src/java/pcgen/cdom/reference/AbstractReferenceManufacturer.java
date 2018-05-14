@@ -1,16 +1,16 @@
 /*
  * Copyright 2007, 2008 (C) Tom Parker <thpr@users.sourceforge.net>
- * 
+ *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import javax.swing.event.EventListenerList;
 
 import pcgen.base.lang.CaseInsensitiveString;
 import pcgen.base.util.BasicIndirect;
@@ -41,6 +40,7 @@ import pcgen.cdom.base.CDOMReference;
 import pcgen.cdom.base.ClassIdentity;
 import pcgen.cdom.base.Loadable;
 import pcgen.cdom.content.RollMethod;
+import pcgen.cdom.facet.event.EventListenerListBase;
 import pcgen.util.Logging;
 import pcgen.util.StringPClassUtil;
 
@@ -50,10 +50,10 @@ import pcgen.util.StringPClassUtil;
  * Class of Loadable, or a specific Class/Category for Categorized Loadable
  * (this class does not make distinction between the Class and Class/Categorized
  * cases)
- * 
+ *
  * The Class is designed to share significant common code between
  * implementations of the ReferenceManufacturer interface.
- * 
+ *
  * @param <T>
  *            The Class of object this AbstractReferenceManufacturer can
  *            manufacture
@@ -80,7 +80,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * references to be reused if a combination of types reference is requested
 	 * a second time). This also stores the reference so that it can be
 	 * appropriately resolved when resolveReferences() is called.
-	 * 
+	 *
 	 * It is expected that the String array used as a key to this map conforms
 	 * to the following rules: (1) The array does not contain null values (2)
 	 * The array does not contain redundant values (3) The array is sorted in
@@ -127,7 +127,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * "duplicate" in this MapToList should be removed and moved to the "active"
 	 * map. This map should never contain an identifier which is not in the
 	 * active map.
-	 * 
+	 *
 	 * Due to extremely weak .equals() rules in many PObjects, this Map MUST be
 	 * a HashMapToInstanceList. In the future, it may be exchanged for a
 	 * TreeMapToList that leverages String.CASE_INSENSITIVE_ORDER; however, the
@@ -156,21 +156,21 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	private final List<WeakReference<T>> manufactured = new ArrayList<>();
 
 	/**
-	 * The EventListenerList which contains the listeners to this
+	 * The EventListenerListBase which contains the listeners to this
 	 * AbstractReferenceManufacturer.
 	 */
-	private final EventListenerList listenerList = new EventListenerList();
+	private final EventListenerListBase listenerList = new EventListenerListBase();
 
 	/**
 	 * Constructs a new AbstractReferenceManufacturer for the given Class.
-	 * 
+	 *
 	 * @param fac
 	 *            The ManufacturableFactory this AbstractReferenceManufacturer
 	 *            will use to construct and reference objects
 	 * @throws IllegalArgumentException
 	 *             if the given Class is null or the given Class does not have a
 	 *             public, zero argument constructor
-	 * 
+	 *
 	 */
 	public AbstractReferenceManufacturer(ManufacturableFactory<T> fac)
 	{
@@ -186,7 +186,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Gets a reference to the Class or Class/Context provided by this
 	 * AbstractReferenceManufacturer. The reference will be a reference to the
 	 * objects identified by the given types.
-	 * 
+	 *
 	 * @param types
 	 *            An array of the types of objects to which the returned
 	 *            CDOMReference will refer.
@@ -253,7 +253,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Returns a CDOMGroupRef for the given Class or Class/Context provided by
 	 * this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @return A CDOMGroupRef which is intended to contain all the objects of
 	 *         the Class or Class/Context this AbstractReferenceManufacturer
 	 *         represents.
@@ -270,7 +270,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 
 	/**
 	 * The class of object this AbstractReferenceManufacturer represents.
-	 * 
+	 *
 	 * @return The class of object this AbstractReferenceManufacturer
 	 *         represents.
 	 */
@@ -284,9 +284,9 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Resolves the references that have been requested from this
 	 * AbstractReferenceManufacturer, using the objects contained within this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * This method guarantees that all references are resolved.
-	 * 
+	 *
 	 * Note: Implementations of AbstractReferenceManufacturer may place limits
 	 * on the number of times resolveReferences() can be called. The reason for
 	 * this is that some references may only be resolved once, and the
@@ -374,11 +374,11 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Adds an object to the contents of this AbstractReferenceManufacturer.
 	 * This is used in conditions where this AbstractReferenceManufacturer was
 	 * not used to construct the object.
-	 * 
+	 *
 	 * Implementation Note: There are various situations where this "external
 	 * construction" may happen - the primary one being loading of "game mode"
 	 * information like CDOMStat objects.
-	 * 
+	 *
 	 * @param item
 	 *            The object to be imported into this
 	 *            AbstractReferenceManufacturer
@@ -413,12 +413,12 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * an object with the given identifier is not present in this
 	 * AbstractReferenceManufacturer. Does not make any test to check if the
 	 * given identifier has multiple matching objects.
-	 * 
+	 *
 	 * Note that this is testing *object* presence. This will not return an
 	 * object if a reference for the given identifier has been requested; it
 	 * will only return true if an object with the given identifier has actually
 	 * been constructed by or imported into this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @param key
 	 *            identifier of the object to be returned
 	 * @return The object stored in this AbstractReferenceManufacturer with the
@@ -435,12 +435,12 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Gets the object represented by the given identifier. Will return null if
 	 * an object with the given identifier is not present in this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * Note that this is testing *object* presence. This will not return an
 	 * object if a reference for the given identifier has been requested; it
 	 * will only return true if an object with the given identifier has actually
 	 * been constructed by or imported into this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @param key
 	 *            identifier of the object to be returned
 	 * @return The object stored in this AbstractReferenceManufacturer with the
@@ -478,14 +478,14 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Constructs a new Loadable of the Class or Class/Category represented by
 	 * this AbstractReferenceManufacturer. This also adds the object to the list
 	 * of constructed objects within this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * Implementation Note: At this point, the "key" provided is likely to be
 	 * the "display name" of an object, not the actual "KEY". This is due to the
 	 * need to construct an object at the time it is first encountered, which is
 	 * probably not the time at which the KEY is known (the intent is not to do
 	 * "lookahead", as it fails under .MOD conditions anyway). In order to
 	 * "rename" an object once a KEY is encountered, see renameObject(String, T)
-	 * 
+	 *
 	 * @param key
 	 *            The identifier of the Loadable to be constructed
 	 * @return The new Loadable of the Class or Class/Category represented by
@@ -504,12 +504,12 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Constructs a new Loadable of the Class or Class/Category represented by
 	 * this AbstractReferenceManufacturer
-	 * 
+	 *
 	 * This should remain protected (vs. public) as it is for "internal use
 	 * only"; it serves as a convenience method to wrap the .newInstance call
 	 * and the possible Exceptions. Other classes should use
 	 * constructObject(String)
-	 * 
+	 *
 	 * @param key
 	 *            The identifier of the Loadable to be constructed
 	 * @return The new Loadable of the Class or Class/Category represented by
@@ -532,7 +532,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Changes the identifier for a given object, as stored in this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @param key
 	 *            The new identifier to be used for the given object
 	 * @param item
@@ -560,7 +560,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Remove the given object from this AbstractReferenceManufacturer. Returns
 	 * true if the object was removed from this AbstractReferenceManufacturer;
 	 * false otherwise.
-	 * 
+	 *
 	 * @param item
 	 *            The object to be removed from this
 	 *            AbstractReferenceManufacturer.
@@ -610,12 +610,12 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Returns true if this AbstractReferenceManufacturer contains an object of
 	 * the Class or Class/Category represented by this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * Note that this is testing *object* presence. This will not return true if
 	 * a reference for the given identifier has been requested; it will only
 	 * return true if an object with the given identifier has actually been
 	 * constructed by or imported into this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @param key
 	 *            The identifier of the object to be checked if it is present in
 	 *            this AbstractReferenceManufacturer.
@@ -633,7 +633,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Gets a reference to the Class or Class/Context provided by this
 	 * AbstractReferenceManufacturer. The reference will be a reference to the
 	 * object identified by the given key.
-	 * 
+	 *
 	 * @param key
 	 *            The key used to identify the object to which the returned
 	 *            CDOMReference will refer.
@@ -647,7 +647,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	{
 		/*
 		 * TODO This is incorrect, but a hack for now :)
-		 * 
+		 *
 		 * Mainly this throws around IllegalArgumentException in order to catch
 		 * bad parsing issues (design flaws in the code). Not sure if we want to
 		 * continue that long term? Once tokens are truly tested this may not be
@@ -737,21 +737,21 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Returns true if this AbstractReferenceManufacturer is "valid". A "valid"
 	 * AbstractReferenceManufacturer is one where all of the following are true:
-	 * 
+	 *
 	 * (1) Any object stored in the AbstractReferenceManufacturer reports that
 	 * it's KEY (as defined by Loadable.getKeyName()) matches the identifier
 	 * used to store the object in the AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * (2) All objects stored in the ReferenceManufacturer have valid names
 	 * (do not use illegal characters in the names)
-	 * 
+	 *
 	 * (3) No two objects in the AbstractReferenceManufacturer have a matching
 	 * identifier.
-	 * 
+	 *
 	 * @param validator
 	 *            UnconstructedValidator which can suppress unconstructed
 	 *            reference warnings
-	 * 
+	 *
 	 * @return true if the AbstractReferenceManufacturer is "valid"; false
 	 *         otherwise.
 	 */
@@ -784,7 +784,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 			}
 			/*
 			 * http://wiki.pcgen.org/index.php?title=Data_LST_Standards
-			 * 
+			 *
 			 * Characters which should never be used in object names are Commas
 			 * (,), Pipes (|), Backslashes (\), Colons (:), Semicolons (;),
 			 * Periods (.), Brackets ([]), Percent (%), Asterisk (*) and Equals
@@ -952,11 +952,11 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * when buildDeferredObjects() is called. The object will be constructed
 	 * only if no object with the matching identifier has been constructed or
 	 * imported into this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * Implementation Note: This is generally used for backwards compatibility
 	 * to previous versions of PCGen or to items that are built automatically
 	 * (such as Weapon Proficiencies for Natural Attacks)
-	 * 
+	 *
 	 * @param key
 	 *            The identifier of the Loadable to be built (if otherwise not
 	 *            constructed or imported into this
@@ -978,7 +978,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * AbstractReferenceManufacturer, sorted by their Key Name. This will not
 	 * return null, it will return an empty list if no objects have been
 	 * constructed by or imported into this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @return A sorted Collection of all of the objects contained in this
 	 *         AbstractReferenceManufacturer
 	 */
@@ -994,7 +994,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * AbstractReferenceManufacturer using constructIfNecessary(String). Objects
 	 * will be constructed only if no object with the matching identifier has
 	 * been constructed or imported into this AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * Construction or import into the AbstractReferenceManufacturer could occur
 	 * at any time before buildDeferredObjects() is called, either before or
 	 * after constructIfNecessary(String) was called with the relevant
@@ -1019,17 +1019,17 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Returns a Collection of the "TYPE" references for this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * This method is value-semantic in that ownership of the returned
 	 * Collection is transferred to the class calling this method. Modification
 	 * of the returned Collection will not modify the "TYPE" references for this
 	 * AbstractReferenceManufacturer and modification of the "TYPE" references
 	 * for this AbstractReferenceManufacturer through subsequent calls of
 	 * getTypeReference(String...) will not modify the returned Collection.
-	 * 
+	 *
 	 * This method will not return null, even if getTypeReference(String...)
 	 * method was never called.
-	 * 
+	 *
 	 * @return A Collection of the "TYPE" references for this
 	 *         AbstractReferenceManufacturer.
 	 */
@@ -1056,17 +1056,17 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Returns a Collection of the primitive references for this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * This method is value-semantic in that ownership of the returned
 	 * Collection is transferred to the class calling this method. Modification
 	 * of the returned Collection will not modify the primitive references for
 	 * this AbstractReferenceManufacturer and modification of the primitive
 	 * references for this AbstractReferenceManufacturer through subsequent
 	 * calls of getReference(String) will not modify the returned Collection.
-	 * 
+	 *
 	 * This method will not return null, even if getReference(String) method was
 	 * never called.
-	 * 
+	 *
 	 * @return A Collection of the primitive references for this
 	 *         AbstractReferenceManufacturer.
 	 */
@@ -1089,12 +1089,12 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Injects all objects from the given ReferenceManufacturer into this
 	 * AbstractReferenceManufacturer. Effectively this is a bulk addObject for
 	 * all of the objects contained in the given ReferenceManufacturer.
-	 * 
+	 *
 	 * Note that this imports only the objects, and NOT references. This
 	 * AbstractReferenceManufacturer does inherit any deferred objects
 	 * (triggered through constructIfNecessary) from the given
 	 * ReferenceManufacturer.
-	 * 
+	 *
 	 * @param arm
 	 *            The ReferenceManufacturer from which the objects should be
 	 *            imported into this AbstractReferenceManufacturer
@@ -1124,21 +1124,21 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * if it does not exist. This is an alternative to constructIfNecessary that
 	 * should be used sparingly (generally direct access like this is higher
 	 * risk, but necessary in some cases)
-	 * 
+	 *
 	 * Note that use of this method is inherently risky when taken in context to
 	 * .MOD and .COPY. Changes to keys may change the object to which an
 	 * identifier refers. Therefore, any resolution that should take place at
 	 * runtime should use getReference and resolve the reference.
-	 * 
+	 *
 	 * The object will be constructed only if no object with the matching
 	 * identifier has been constructed or imported into this
 	 * ReferenceManufacturer. If the object has already been constructed, then
 	 * the previously constructed object is returned.
-	 * 
+	 *
 	 * This method is effectively a convenience method that wraps
 	 * containsObject, getObject, and constructObject into a single method call
 	 * (and avoids the contains-triggered branch)
-	 * 
+	 *
 	 * @param key
 	 *            The identifier of the Loadable to be built (if otherwise not
 	 *            constructed or imported into this
@@ -1166,7 +1166,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * AbstractReferenceManufacturer is called and the UnconstructedValidator
 	 * given to the validate method does not report that the unconstructed
 	 * reference is permitted.
-	 * 
+	 *
 	 * @param listener
 	 *            The UnconstructedListener to be registered with this
 	 *            AbstractReferenceManufacturer
@@ -1180,7 +1180,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	/**
 	 * Returns an array of UnconstructedListeners that are registered with this
 	 * AbstractReferenceManufacturer.
-	 * 
+	 *
 	 * @return An array of UnconstructedListeners that are registered with this
 	 *         AbstractReferenceManufacturer.
 	 */
@@ -1194,7 +1194,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Removes an UnconstructedListener from this AbstractReferenceManufacturer,
 	 * so that it will no longer receive UnconstructedEvents from this
 	 * AbstractReferenceManufacturer
-	 * 
+	 *
 	 * @param listener
 	 *            The UnconstructedListener to be removed from registration with
 	 *            this AbstractReferenceManufacturer
@@ -1209,7 +1209,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Fires a new UnconstructedEvent for the given CDOMReference to any
 	 * UnconstructedListener objects registered with this
 	 * AbstractReferenceManufacturer
-	 * 
+	 *
 	 * @param ref
 	 *            The CDOMReference to which the UnconstructedEvent should
 	 *            refer.
@@ -1244,7 +1244,7 @@ public abstract class AbstractReferenceManufacturer<T extends Loadable>
 	 * Returns the number of objects that are constructed in this
 	 * AbstractReferenceManufacturer (These could be natively constructed or
 	 * imported objects and does not count duplicates)
-	 * 
+	 *
 	 * @return The number of objects that are constructed in this
 	 *         AbstractReferenceManufacturer
 	 */

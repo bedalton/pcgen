@@ -1,28 +1,28 @@
 /*
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- * 
+ *
  */
 package pcgen.facade.util;
 
 import java.util.AbstractList;
 import java.util.Iterator;
 
-import javax.swing.event.EventListenerList;
 
+import pcgen.cdom.facet.event.EventListenerListBase;
 import pcgen.facade.util.event.ListEvent;
 import pcgen.facade.util.event.ListListener;
 
@@ -30,7 +30,7 @@ import pcgen.facade.util.event.ListListener;
 public abstract class AbstractListFacade<E> implements ListFacade<E>
 {
 
-	protected EventListenerList listenerList = new EventListenerList();
+	protected EventListenerListBase listenerList = new EventListenerListBase();
 	private Iterable<E> iteratorWrapper = null;
 
     @Override
@@ -97,7 +97,7 @@ public abstract class AbstractListFacade<E> implements ListFacade<E>
 	 * @param source the {@code ListFacade} that changed, typically "this"
 	 * @param element the element that was added
 	 * @param index the index of the element that was added.
-	 * @see EventListenerList
+	 * @see EventListenerListBase
 	 */
 	protected void fireElementAdded(Object source, E element, int index)
 	{
@@ -124,7 +124,7 @@ public abstract class AbstractListFacade<E> implements ListFacade<E>
 	 * @param source the {@code ListFacade} that changed, typically "this"
 	 * @param element the element that was removed
 	 * @param index the index of the element that was removed.
-	 * @see EventListenerList
+	 * @see EventListenerListBase
 	 */
 	protected void fireElementRemoved(Object source, E element, int index)
 	{
@@ -148,7 +148,7 @@ public abstract class AbstractListFacade<E> implements ListFacade<E>
 	 * <b>after</b> the contents of this list have greatly changed.
 	 *
 	 * @param source the {@code ListFacade} that changed, typically "this"
-	 * @see EventListenerList
+	 * @see EventListenerListBase
 	 */
 	protected void fireElementsChanged(Object source)
 	{
@@ -175,7 +175,7 @@ public abstract class AbstractListFacade<E> implements ListFacade<E>
 	 * @param source the {@code ListFacade} that changed, typically "this"
 	 * @param element the element that was modified
 	 * @param index the index of the element that was modified.
-	 * @see EventListenerList
+	 * @see EventListenerListBase
 	 */
 	protected void fireElementModified(Object source, E element, int index)
 	{
